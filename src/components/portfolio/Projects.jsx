@@ -11,7 +11,7 @@ export default function Projects() {
       image: 'https://images.unsplash.com/photo-1563207153-f403bf289096?w=800&q=80',
       tags: ['Java', 'RMI', 'OOP', 'UML', 'Client-Server'],
       date: '04/2025 - 07/2025',
-      github: 'https://github.com',
+      github: 'https://gitlab.com/se_group2025/se-development-lab/-/tree/main/JMS-robot-app-Mykhailo-Tomiwa?ref_type=heads',
       featured: true
     },
     {
@@ -29,7 +29,7 @@ export default function Projects() {
       image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
       tags: ['Java', 'OOP', 'GUI', 'Design Patterns'],
       date: '04/2024 - 07/2024',
-      github: 'https://github.com'
+      github: 'https://github.com/Crab1k/Squirrel/'
     },
     {
       title: 'WordPress Website',
