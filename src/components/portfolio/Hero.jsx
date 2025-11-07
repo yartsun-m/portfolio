@@ -55,11 +55,11 @@ export default function Hero({ onScrollToProjects }) {
           </div>
 
           <div className="flex gap-6 justify-center pt-8">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/yartsun-m" target="_blank" rel="noopener noreferrer"
               className="p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
               <Github className="w-6 h-6" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.linkedin.com/in/mykhailo-yartsun-340679367" target="_blank" rel="noopener noreferrer"
               className="p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
               <Linkedin className="w-6 h-6" />
             </a>
