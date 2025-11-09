@@ -6,6 +6,7 @@ import Hero from '../components/portfolio/Hero';
 import About from '../components/portfolio/About';
 import Projects from '../components/portfolio/Projects';
 import Contact from '../components/portfolio/Contact';
+import ParticleBackground from '../components/portfolio/ParticleBackground';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +41,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white">
+    <div className="relative min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
+      {/* Particle Background */}
+      <ParticleBackground />
+      
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-[#0A0A0A]/95 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'
