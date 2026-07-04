@@ -28,6 +28,16 @@ export const siteConfig: SiteConfig = {
   siteUrl: 'https://yartsun.dev',
 };
 
+export const heroTechStack: string[] = [
+  'FastAPI',
+  'PostgreSQL',
+  'Python',
+  'Docker',
+  'Java',
+  'REST APIs',
+  'AI Integration',
+];
+
 export const navSections: NavSection[] = [
   { id: 'home', labelKey: 'home' },
   { id: 'about', labelKey: 'about' },

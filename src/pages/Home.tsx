@@ -8,13 +8,13 @@ import Experience from '@/components/portfolio/Experience';
 import Certifications from '@/components/portfolio/Certifications';
 import Projects from '@/components/portfolio/Projects';
 import Contact from '@/components/portfolio/Contact';
-import ObservabilityBackground from '@/components/portfolio/ObservabilityBackground';
+import BlueprintBackground from '@/components/portfolio/BlueprintBackground';
 import LanguageToggle from '@/components/portfolio/LanguageToggle';
 import { navSections, siteConfig } from '@/data/portfolio';
 import { useTranslation } from '@/i18n/useTranslation';
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,14 +49,17 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
+    <div className="relative min-h-screen bg-[#0a1628] text-white overflow-hidden">
       <div className="fixed inset-0 pointer-events-none">
-        <ObservabilityBackground />
+        <BlueprintBackground />
       </div>
 
+      <div key={locale} className="relative z-10 animate-in fade-in duration-200 motion-reduce:animate-none">
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-[#0A0A0A]/95 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'
+          scrolled
+            ? 'bg-[#0a1628]/95 backdrop-blur-sm border-b border-dashed border-cyan-500/20'
+            : 'bg-transparent'
         }`}
         aria-label="Main navigation"
       >
@@ -64,29 +67,24 @@ export default function Home() {
           <div className="flex justify-between items-center">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+              className="text-lg font-bold text-cyan-400 font-mono tracking-tight hover:text-cyan-300 transition-colors"
             >
               {siteConfig.name}
             </button>
 
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-8">
               {navSections.map(({ id, labelKey }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`transition-colors ${
-                    activeSection === id ? 'text-blue-400' : 'text-gray-400 hover:text-white'
+                  className={`blueprint-nav-link ${
+                    activeSection === id ? 'blueprint-nav-active' : 'blueprint-nav-idle'
                   }`}
                 >
                   {t.nav[labelKey]}
                 </button>
               ))}
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-transparent border-white/20 hover:bg-white/10 text-white"
-                asChild
-              >
+              <Button variant="outline" size="sm" className="blueprint-btn-outline font-mono text-xs" asChild>
                 <a href={siteConfig.resumeUrl} download="Mykhailo_Yartsun_Resume.pdf">
                   <FileDown className="w-4 h-4 mr-2" />
                   {t.nav.cv}
@@ -104,7 +102,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub profile"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-slate-500 hover:text-cyan-400 transition-colors"
               >
                 <Github className="w-5 h-5" />
               </a>
@@ -113,12 +111,12 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn profile"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-slate-500 hover:text-cyan-400 transition-colors"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <button
-                className="lg:hidden text-gray-400 hover:text-white"
+                className="lg:hidden text-slate-500 hover:text-cyan-400"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
                 aria-expanded={mobileMenuOpen}
@@ -129,13 +127,13 @@ export default function Home() {
           </div>
 
           {mobileMenuOpen && (
-            <div className="lg:hidden pt-4 pb-2 border-t border-white/10 mt-4 space-y-2">
+            <div className="lg:hidden pt-4 pb-2 border-t border-dashed border-cyan-500/20 mt-4 space-y-2">
               {navSections.map(({ id, labelKey }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`block w-full text-left py-2 transition-colors ${
-                    activeSection === id ? 'text-blue-400' : 'text-gray-400 hover:text-white'
+                  className={`block w-full text-left py-2 font-mono text-sm uppercase tracking-wide transition-colors ${
+                    activeSection === id ? 'text-cyan-400' : 'text-slate-500 hover:text-cyan-300'
                   }`}
                 >
                   {t.nav[labelKey]}
@@ -144,7 +142,7 @@ export default function Home() {
               <a
                 href={siteConfig.resumeUrl}
                 download="Mykhailo_Yartsun_Resume.pdf"
-                className="flex items-center gap-2 py-2 text-gray-400 hover:text-white"
+                className="flex items-center gap-2 py-2 text-slate-500 hover:text-cyan-400 font-mono text-sm"
               >
                 <FileDown className="w-4 h-4" />
                 {t.nav.downloadCv}
@@ -157,7 +155,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <main>
+      <main className="relative z-10">
         <div id="home">
           <Hero onScrollToProjects={() => scrollToSection('projects')} />
         </div>
@@ -181,13 +179,14 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="border-t border-white/10 py-8">
-        <div className="max-w-7xl mx-auto px-6 text-center text-gray-400">
+      <footer className="relative z-10 border-t border-dashed border-cyan-500/20 py-8">
+        <div className="max-w-7xl mx-auto px-6 text-center text-slate-500 font-mono text-sm">
           <p>
             © 2026 {siteConfig.name}. {t.footer.builtWith}
           </p>
         </div>
       </footer>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
-import { Award, BookOpen } from 'lucide-react';
+import { Award } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import SectionHeading from '@/components/portfolio/SectionHeading';
 import { certifications } from '@/data/portfolio';
 import { useTranslation } from '@/i18n/useTranslation';
 
@@ -7,47 +8,41 @@ export default function Certifications() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden" aria-labelledby="certifications-heading">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/10 to-transparent" />
-
+    <section className="py-24 px-6 relative" aria-labelledby="certifications-heading">
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 id="certifications-heading" className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {t.certifications.title.split(' ')[0]}
-            </span>{' '}
-            {t.certifications.title.split(' ').slice(1).join(' ')}
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">{t.certifications.subtitle}</p>
-        </div>
+        <SectionHeading
+          id="certifications-heading"
+          title={t.certifications.title}
+          highlight="Certifications"
+          subtitle={t.certifications.subtitle}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {certifications.map((cert) => {
+          {certifications.map((cert, index) => {
             const content = t.certifications.items[cert.titleKey];
-            const Icon = cert.type === 'certification' ? Award : BookOpen;
 
             return (
-              <article
-                key={cert.id}
-                className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-colors"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-indigo-500/10 shrink-0">
-                    <Icon className="w-5 h-5 text-indigo-400" />
+              <article key={cert.id} className="blueprint-panel">
+                <span className="blueprint-badge mb-3 inline-block">
+                  CERT · {String(index + 1).padStart(2, '0')}
+                </span>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 border border-dashed border-cyan-500/30 shrink-0">
+                    <Award className="w-4 h-4 text-cyan-400" />
                   </div>
                   <div className="min-w-0">
-                    <Badge className="mb-2 bg-indigo-500/10 text-indigo-300 border-indigo-500/20">
+                    <Badge className="mb-2 bg-cyan-500/5 text-cyan-400 border border-dashed border-cyan-500/30 rounded-sm font-mono text-xs">
                       {t.certifications.types[cert.type]}
                     </Badge>
-                    <h3 className="font-semibold text-lg mb-1">{content.title}</h3>
-                    <p className="text-blue-400 text-sm mb-1">{content.issuer}</p>
-                    <p className="text-xs text-gray-500">{cert.date}</p>
+                    <h3 className="font-semibold text-base mb-1">{content.title}</h3>
+                    <p className="text-cyan-400/70 text-sm font-mono mb-1">{content.issuer}</p>
+                    <p className="text-xs text-slate-500 font-mono">{cert.date}</p>
                     {cert.url && (
                       <a
                         href={cert.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-blue-400 hover:text-blue-300 mt-2 inline-block"
+                        className="text-sm text-cyan-400 hover:text-cyan-300 mt-2 inline-block font-mono"
                       >
                         View credential →
                       </a>

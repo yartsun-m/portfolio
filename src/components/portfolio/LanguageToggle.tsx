@@ -11,11 +11,11 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggle}
-      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-gray-400 hover:text-white border border-white/10 hover:border-white/20 transition-colors"
+      className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-mono uppercase tracking-wide text-slate-500 hover:text-cyan-400 border border-dashed border-cyan-500/30 hover:border-cyan-400/50 transition-colors"
       aria-label={`${t.common.language}: ${locale === 'en' ? t.common.german : t.common.english}`}
     >
       <Globe className="w-4 h-4" />
-      <span className="uppercase font-medium">{locale}</span>
+      <span>{locale}</span>
     </button>
   );
 }

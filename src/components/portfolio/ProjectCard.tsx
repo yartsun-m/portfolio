@@ -14,8 +14,8 @@ function CaseStudyField({ label, value }: CaseStudyFieldProps) {
   if (!value) return null;
   return (
     <div>
-      <dt className="text-xs font-semibold uppercase tracking-wider text-blue-400 mb-1">{label}</dt>
-      <dd className="text-sm text-gray-400 leading-relaxed">{value}</dd>
+      <dt className="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-1">{label}</dt>
+      <dd className="text-sm text-slate-400 leading-relaxed">{value}</dd>
     </div>
   );
 }
@@ -34,33 +34,36 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <article
-      className={`group relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] motion-reduce:transform-none ${
+      className={`group relative overflow-hidden border border-dashed border-cyan-500/30 bg-[#0d1f3c]/40 hover:border-cyan-400/50 transition-colors ${
         project.featured ? 'md:col-span-2' : ''
       }`}
     >
-      <div className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 via-transparent to-transparent" />
-        <div className="absolute bottom-4 left-6 right-6">
-          <p className="text-xs font-medium text-white/70 uppercase tracking-wider mb-1">{accent}</p>
+      <div className="blueprint-hatch relative h-44 overflow-hidden">
+        <div className="absolute inset-0 flex flex-col justify-end p-6">
+          <p className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-[0.2em] mb-1">
+            {accent}
+          </p>
           <h3 className="text-2xl font-bold text-white">{content.title}</h3>
         </div>
+        <span className="absolute top-3 right-3 blueprint-badge text-[9px]">
+          REV · {project.date}
+        </span>
       </div>
 
       <div className="p-6">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <span className="text-xs text-gray-500">{project.date}</span>
+          <span className="text-xs text-slate-500 font-mono">{project.date}</span>
           {content.role && (
-            <span className="text-xs text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full px-3 py-1">
+            <span className="text-xs text-cyan-300/80 border border-dashed border-cyan-500/30 px-2 py-0.5 font-mono">
               {content.role}
             </span>
           )}
         </div>
 
-        <p className="text-gray-300 mb-4">{content.description}</p>
+        <p className="text-slate-300 mb-4">{content.description}</p>
 
         {hasCaseStudy && (
-          <dl className="space-y-3 mb-4 p-4 rounded-xl bg-white/[0.03] border border-white/5">
+          <dl className="space-y-3 mb-4 p-4 border border-dashed border-cyan-500/15 bg-cyan-500/[0.02]">
             <CaseStudyField label={t.projects.labels.problem} value={content.problem} />
             <CaseStudyField label={t.projects.labels.challenge} value={content.challenge} />
             <CaseStudyField label={t.projects.labels.result} value={content.result} />
@@ -72,7 +75,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <Badge
               key={tag}
               variant="secondary"
-              className="bg-blue-500/10 text-blue-400 border-blue-500/20 hover:bg-blue-500/20"
+              className="bg-cyan-500/5 text-cyan-300/80 border border-dashed border-cyan-500/25 rounded-sm font-mono text-xs"
             >
               {tag}
             </Badge>
@@ -80,11 +83,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Button
-            variant="outline"
-            className="bg-transparent border-white/20 hover:bg-white/10 text-white"
-            asChild
-          >
+          <Button variant="outline" className="blueprint-btn-outline" asChild>
             <Link to={`/projects/${project.id}`}>
               {t.projects.labels.viewDetails}
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -92,10 +91,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </Button>
           {project.github && (
             <a href={project.github} target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="outline"
-                className="bg-transparent border-white/20 hover:bg-white/10 text-white"
-              >
+              <Button variant="outline" className="blueprint-btn-outline">
                 <Github className="w-4 h-4 mr-2" />
                 {t.projects.labels.code}
               </Button>
@@ -103,7 +99,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           )}
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noopener noreferrer">
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
+              <Button className="blueprint-btn-primary">
                 <ExternalLink className="w-4 h-4 mr-2" />
                 {t.projects.labels.demo}
               </Button>

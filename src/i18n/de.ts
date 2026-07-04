@@ -17,10 +17,10 @@ export const de: Translations = {
   hero: {
     badge: 'Offen für Werkstudent- & Praktikumsstellen',
     titleLine1: 'Backend Engineer',
-    titleLine2: 'Data · APIs · KI',
-    tagline: 'Ich baue die API-Schicht zwischen Datenbanken und KI',
+    titleLine2: 'FastAPI · SQL · KI',
+    tagline: 'Backend Engineer mit Fokus auf FastAPI, PostgreSQL und KI-gestützte APIs.',
     intro:
-      'Ich entwickle FastAPI-Backends und PostgreSQL-Systeme — und integriere ML und LLMs, wenn die Daten es brauchen. 6. Semester an der HAW Hamburg.',
+      'Information-Engineering-Student an der HAW Hamburg (6. Semester). Ich entwickle FastAPI-Backends und PostgreSQL-Systeme — und integriere ML und LLMs, wenn die Daten es brauchen. Offen für eine Werkstudent- oder Praktikumsstelle in Hamburg.',
     pipelineRaw: 'CSV / SQL',
     pipelineApi: 'FastAPI',
     pipelineDb: 'PostgreSQL',
@@ -36,6 +36,7 @@ export const de: Translations = {
   },
   about: {
     title: 'Über mich',
+    headingHighlight: 'mich',
     subtitle:
       'Information Engineering an der HAW Hamburg (6. Semester). Ich entwickle FastAPI-Backends und PostgreSQL-Systeme — und integriere ML und LLMs, wenn die Daten es brauchen.',
     education: 'Ausbildung',
@@ -59,6 +60,7 @@ export const de: Translations = {
   },
   skills: {
     title: 'Technische Skills',
+    headingHighlight: 'Skills',
     subtitle:
       'Technologien aus meinen Projekten — Backend-APIs, Datenbanken, KI/ML und moderne Webentwicklung.',
     categories: {
@@ -72,6 +74,7 @@ export const de: Translations = {
   },
   experience: {
     title: 'Erfahrung',
+    headingHighlight: 'Erfahrung',
     subtitle:
       'Backend-Entwicklung, KI-Integration und akademische Systemprojekte — von eigenen Produkten bis Teamprojekten.',
     viewProject: 'Projekt ansehen',
@@ -118,6 +121,7 @@ export const de: Translations = {
   },
   certifications: {
     title: 'Zertifikate & Weiterbildung',
+    headingHighlight: 'Zertifikate',
     subtitle: 'Verifizierte Zertifikate in Data Analytics, Python und Business Intelligence.',
     types: {
       certification: 'Zertifikat',
@@ -140,6 +144,7 @@ export const de: Translations = {
   },
   projects: {
     title: 'Meine Projekte',
+    headingHighlight: 'Projekte',
     subtitle:
       'Full-Stack- und Backend-Projekte — von KI-Data-Plattformen bis verteilte Systeme und Datenbankdesign.',
     accents: {
@@ -243,6 +248,7 @@ export const de: Translations = {
   },
   contact: {
     title: 'Kontakt',
+    headingHighlight: 'Kontakt',
     subtitle:
       'Offen für Werkstudent- und Praktikumsstellen in Backend, Full-Stack oder Data Engineering.',
     getInTouch: 'Kontakt aufnehmen',

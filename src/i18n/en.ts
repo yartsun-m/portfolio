@@ -19,10 +19,10 @@ export const en: Translations = {
   hero: {
     badge: 'Open to Werkstudent & internship opportunities',
     titleLine1: 'Backend Engineer',
-    titleLine2: 'Data · APIs · AI',
-    tagline: 'I build the API layer between databases and AI',
+    titleLine2: 'FastAPI · SQL · AI',
+    tagline: 'Backend Engineer specializing in FastAPI, PostgreSQL, and AI-powered APIs.',
     intro:
-      'I build FastAPI backends and PostgreSQL systems — then wire in ML and LLMs when the data needs it. 6th semester at HAW Hamburg.',
+      'Information Engineering student at HAW Hamburg (6th semester). I build FastAPI backends and PostgreSQL systems — then wire in ML and LLMs when the data needs it. Open for a Werkstudent or internship role in Hamburg.',
     pipelineRaw: 'CSV / SQL',
     pipelineApi: 'FastAPI',
     pipelineDb: 'PostgreSQL',
@@ -38,6 +38,7 @@ export const en: Translations = {
   },
   about: {
     title: 'About Me',
+    headingHighlight: 'Me',
     subtitle:
       "Information Engineering student at HAW Hamburg (6th semester). I build FastAPI backends and PostgreSQL systems — then wire in ML and LLMs when the data needs it.",
     education: 'Education',
@@ -61,6 +62,7 @@ export const en: Translations = {
   },
   skills: {
     title: 'Technical Skills',
+    headingHighlight: 'Skills',
     subtitle:
       'Technologies I use in projects — backend APIs, databases, AI/ML, and modern web development.',
     categories: {
@@ -74,6 +76,7 @@ export const en: Translations = {
   },
   experience: {
     title: 'Experience',
+    headingHighlight: 'Experience',
     subtitle:
       'Backend development, AI integration, and academic systems work — from personal products to team projects.',
     viewProject: 'View project',
@@ -120,6 +123,7 @@ export const en: Translations = {
   },
   certifications: {
     title: 'Certifications & Training',
+    headingHighlight: 'Certifications',
     subtitle: 'Verified credentials in data analytics, Python, and business intelligence.',
     types: {
       certification: 'Certification',
@@ -142,6 +146,7 @@ export const en: Translations = {
   },
   projects: {
     title: 'My Projects',
+    headingHighlight: 'Projects',
     subtitle:
       'Full-stack and backend projects — from AI-powered data platforms to distributed systems and database design.',
     accents: {
@@ -247,6 +252,7 @@ export const en: Translations = {
   },
   contact: {
     title: "Let's Connect",
+    headingHighlight: 'Connect',
     subtitle:
       'Open to Werkstudent and internship opportunities in backend, full-stack, or data engineering.',
     getInTouch: 'Get in touch',

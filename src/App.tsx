@@ -1,7 +1,10 @@
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { LanguageProvider } from '@/i18n/LanguageProvider';
+import CrosshairHover from '@/components/CrosshairHover';
+import PageShell from '@/components/PageShell';
+import ScrollManager from '@/components/ScrollManager';
 import Home from '@/pages/Home';
 import ProjectDetail from '@/pages/ProjectDetail';
 
@@ -10,14 +13,40 @@ function ProjectDetailRoute() {
   return <ProjectDetail projectId={id ?? ''} />;
 }
 
+function AppRoutes() {
+  const location = useLocation();
+
+  return (
+    <>
+      <ScrollManager />
+      <CrosshairHover />
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <PageShell>
+              <Home />
+            </PageShell>
+          }
+        />
+        <Route
+          path="/projects/:id"
+          element={
+            <PageShell>
+              <ProjectDetailRoute />
+            </PageShell>
+          }
+        />
+      </Routes>
+    </>
+  );
+}
+
 export default function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects/:id" element={<ProjectDetailRoute />} />
-        </Routes>
+        <AppRoutes />
         <Analytics />
         <SpeedInsights />
       </BrowserRouter>

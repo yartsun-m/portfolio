@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge';
+import SectionHeading from '@/components/portfolio/SectionHeading';
 import { skillGroups } from '@/data/portfolio';
 import { useTranslation } from '@/i18n/useTranslation';
 
@@ -7,27 +8,22 @@ export default function Skills() {
   const allSkills = skillGroups.flatMap((g) => g.skills);
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden" aria-labelledby="skills-heading">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
-
+    <section className="py-24 px-6 relative" aria-labelledby="skills-heading">
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 id="skills-heading" className="text-4xl md:text-5xl font-bold mb-4">
-            {t.skills.title.split(' ')[0]}{' '}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {t.skills.title.split(' ').slice(1).join(' ')}
-            </span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">{t.skills.subtitle}</p>
-        </div>
+        <SectionHeading
+          id="skills-heading"
+          title={t.skills.title}
+          highlight="Skills"
+          subtitle={t.skills.subtitle}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillGroups.map((group) => (
-            <div
-              key={group.categoryKey}
-              className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-colors"
-            >
-              <h3 className="text-lg font-semibold mb-4 text-blue-400">
+          {skillGroups.map((group, index) => (
+            <div key={group.categoryKey} className="blueprint-panel">
+              <span className="text-[10px] font-mono text-cyan-400/40 block mb-3">
+                SYS · {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3 className="text-base font-bold mb-4 text-cyan-400 font-mono uppercase tracking-wide">
                 {t.skills.categories[group.categoryKey]}
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -35,7 +31,7 @@ export default function Skills() {
                   <Badge
                     key={skill}
                     variant="secondary"
-                    className="bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"
+                    className="bg-cyan-500/5 text-slate-300 border border-dashed border-cyan-500/25 font-mono text-xs rounded-sm"
                   >
                     {skill}
                   </Badge>
