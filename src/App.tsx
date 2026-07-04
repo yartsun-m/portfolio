@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, useParams, useLocation } from 'react-rout
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { LanguageProvider } from '@/i18n/LanguageProvider';
-import CrosshairHover from '@/components/CrosshairHover';
 import PageShell from '@/components/PageShell';
 import ScrollManager from '@/components/ScrollManager';
 import Home from '@/pages/Home';
@@ -19,7 +18,6 @@ function AppRoutes() {
   return (
     <>
       <ScrollManager />
-      <CrosshairHover />
       <Routes location={location} key={location.pathname}>
         <Route
           path="/"
