@@ -1,17 +1,20 @@
-
 import { useEffect, useState } from 'react';
 import { Github, Linkedin, FileDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Hero from '../components/portfolio/Hero';
-import About from '../components/portfolio/About';
-import Skills from '../components/portfolio/Skills';
-import Experience from '../components/portfolio/Experience';
-import Projects from '../components/portfolio/Projects';
-import Contact from '../components/portfolio/Contact';
-import ParticleBackground from '../components/portfolio/ParticleBackground';
+import Hero from '@/components/portfolio/Hero';
+import About from '@/components/portfolio/About';
+import Skills from '@/components/portfolio/Skills';
+import Experience from '@/components/portfolio/Experience';
+import Certifications from '@/components/portfolio/Certifications';
+import Projects from '@/components/portfolio/Projects';
+import Contact from '@/components/portfolio/Contact';
+import ParticleBackground from '@/components/portfolio/ParticleBackground';
+import LanguageToggle from '@/components/portfolio/LanguageToggle';
 import { navSections, siteConfig } from '@/data/portfolio';
+import { useTranslation } from '@/i18n/useTranslation';
 
 export default function Home() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,7 +40,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     setMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     if (element) {
@@ -64,8 +67,8 @@ export default function Home() {
               {siteConfig.name}
             </button>
 
-            <div className="hidden lg:flex items-center gap-8">
-              {navSections.map(({ id, label }) => (
+            <div className="hidden lg:flex items-center gap-6">
+              {navSections.map(({ id, labelKey }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
@@ -73,7 +76,7 @@ export default function Home() {
                     activeSection === id ? 'text-blue-400' : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  {label}
+                  {t.nav[labelKey]}
                 </button>
               ))}
               <Button
@@ -84,12 +87,16 @@ export default function Home() {
               >
                 <a href={siteConfig.resumeUrl} download="Mykhailo_Yartsun_Resume.pdf">
                   <FileDown className="w-4 h-4 mr-2" />
-                  CV
+                  {t.nav.cv}
                 </a>
               </Button>
+              <LanguageToggle />
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:block lg:hidden">
+                <LanguageToggle />
+              </div>
               <a
                 href={siteConfig.github}
                 target="_blank"
@@ -111,7 +118,7 @@ export default function Home() {
               <button
                 className="lg:hidden text-gray-400 hover:text-white"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
                 aria-expanded={mobileMenuOpen}
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -121,7 +128,7 @@ export default function Home() {
 
           {mobileMenuOpen && (
             <div className="lg:hidden pt-4 pb-2 border-t border-white/10 mt-4 space-y-2">
-              {navSections.map(({ id, label }) => (
+              {navSections.map(({ id, labelKey }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
@@ -129,7 +136,7 @@ export default function Home() {
                     activeSection === id ? 'text-blue-400' : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  {label}
+                  {t.nav[labelKey]}
                 </button>
               ))}
               <a
@@ -138,8 +145,11 @@ export default function Home() {
                 className="flex items-center gap-2 py-2 text-gray-400 hover:text-white"
               >
                 <FileDown className="w-4 h-4" />
-                Download CV
+                {t.nav.downloadCv}
               </a>
+              <div className="pt-2">
+                <LanguageToggle />
+              </div>
             </div>
           )}
         </div>
@@ -149,23 +159,21 @@ export default function Home() {
         <div id="home">
           <Hero onScrollToProjects={() => scrollToSection('projects')} />
         </div>
-
         <div id="about">
           <About />
         </div>
-
         <div id="skills">
           <Skills />
         </div>
-
         <div id="experience">
           <Experience />
         </div>
-
+        <div id="certifications">
+          <Certifications />
+        </div>
         <div id="projects">
           <Projects />
         </div>
-
         <div id="contact">
           <Contact />
         </div>
@@ -173,7 +181,9 @@ export default function Home() {
 
       <footer className="border-t border-white/10 py-8">
         <div className="max-w-7xl mx-auto px-6 text-center text-gray-400">
-          <p>© 2026 {siteConfig.name}. Built with React & Tailwind CSS</p>
+          <p>
+            © 2026 {siteConfig.name}. {t.footer.builtWith}
+          </p>
         </div>
       </footer>
     </div>

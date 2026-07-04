@@ -1,22 +1,24 @@
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_FORM_ID;
 const CUSTOM_ENDPOINT = import.meta.env.VITE_CONTACT_FORM_URL;
 
-export function getFormspreeEndpoint() {
+export interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export function getFormspreeEndpoint(): string | null {
   if (FORMSPREE_ID) {
     return `https://formspree.io/f/${FORMSPREE_ID}`;
   }
   return CUSTOM_ENDPOINT || null;
 }
 
-export function isFormspreeEnabled() {
+export function isFormspreeEnabled(): boolean {
   return Boolean(getFormspreeEndpoint());
 }
 
-/**
- * Submit contact form via Formspree (JSON API).
- * @see https://formspree.io/f/YOUR_FORM_ID
- */
-export async function submitToFormspree(formData, honeypot = '') {
+export async function submitToFormspree(formData: ContactFormData, honeypot = '') {
   const endpoint = getFormspreeEndpoint();
   if (!endpoint) {
     throw new Error('Formspree is not configured');
@@ -44,14 +46,14 @@ export async function submitToFormspree(formData, honeypot = '') {
     const message =
       typeof data.error === 'string'
         ? data.error
-        : data.errors?.map((e) => e.message).join(', ') || 'Submission failed';
+        : data.errors?.map((e: { message: string }) => e.message).join(', ') || 'Submission failed';
     throw new Error(message);
   }
 
   return data;
 }
 
-export function openMailtoFallback(formData, recipientEmail) {
+export function openMailtoFallback(formData: ContactFormData, recipientEmail: string) {
   const subject = encodeURIComponent(`Portfolio contact from ${formData.name}`);
   const body = encodeURIComponent(
     `From: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`

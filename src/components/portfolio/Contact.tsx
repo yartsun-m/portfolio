@@ -8,21 +8,26 @@ import {
   isFormspreeEnabled,
   openMailtoFallback,
   submitToFormspree,
+  type ContactFormData,
 } from '@/lib/contactForm';
+import { useTranslation } from '@/i18n/useTranslation';
+
+type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const { t, locale } = useTranslation();
+  const [formData, setFormData] = useState<ContactFormData>({ name: '', email: '', message: '' });
   const [honeypot, setHoneypot] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [status, setStatus] = useState<FormStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [copied, setCopied] = useState(false);
 
   const formspreeEnabled = isFormspreeEnabled();
+  const location = siteConfig.location[locale];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Honeypot filled — silently pretend success (bot trap)
     if (honeypot) {
       setStatus('sent');
       return;
@@ -62,24 +67,27 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold mb-4">
-            Let&apos;s{' '}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Connect
-            </span>
+            {t.contact.title.includes(' ') ? (
+              <>
+                {t.contact.title.split(' ')[0]}{' '}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  {t.contact.title.split(' ').slice(1).join(' ')}
+                </span>
+              </>
+            ) : (
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                {t.contact.title}
+              </span>
+            )}
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Open to Werkstudent and internship opportunities in backend, full-stack, or data engineering.
-          </p>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">{t.contact.subtitle}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Get in touch</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Send a message through the form — it delivers directly to my inbox. I typically respond
-                within 1–2 business days.
-              </p>
+              <h3 className="text-2xl font-bold mb-6">{t.contact.getInTouch}</h3>
+              <p className="text-gray-400 leading-relaxed">{t.contact.intro}</p>
             </div>
 
             <div className="space-y-4">
@@ -88,7 +96,7 @@ export default function Contact() {
                   <Mail className="w-5 h-5 text-blue-400" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold mb-1">Email</div>
+                  <div className="font-semibold mb-1">{t.contact.email}</div>
                   <a
                     href={`mailto:${siteConfig.email}`}
                     className="text-gray-400 hover:text-blue-400 transition-colors break-all"
@@ -105,12 +113,12 @@ export default function Contact() {
                     {copied ? (
                       <>
                         <Check className="w-3.5 h-3.5 mr-1.5 text-green-400" />
-                        Copied
+                        {t.contact.copied}
                       </>
                     ) : (
                       <>
                         <Copy className="w-3.5 h-3.5 mr-1.5" />
-                        Copy email
+                        {t.contact.copyEmail}
                       </>
                     )}
                   </Button>
@@ -122,14 +130,14 @@ export default function Contact() {
                   <Linkedin className="w-5 h-5 text-indigo-400" />
                 </div>
                 <div>
-                  <div className="font-semibold mb-1">LinkedIn</div>
+                  <div className="font-semibold mb-1">{t.contact.linkedin}</div>
                   <a
                     href={siteConfig.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-blue-400 transition-colors"
                   >
-                    Connect on LinkedIn
+                    {t.contact.connectLinkedin}
                   </a>
                 </div>
               </div>
@@ -139,24 +147,20 @@ export default function Contact() {
                   <MapPin className="w-5 h-5 text-purple-400" />
                 </div>
                 <div>
-                  <div className="font-semibold mb-1">Location</div>
-                  <div className="text-gray-400">{siteConfig.location}</div>
+                  <div className="font-semibold mb-1">{t.contact.location}</div>
+                  <div className="text-gray-400">{location}</div>
                 </div>
               </div>
             </div>
 
             <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
-              <h4 className="font-semibold mb-2">Availability</h4>
-              <p className="text-sm text-gray-400">
-                5th semester at HAW Hamburg. Available for part-time roles up to 20 hours/week during
-                the semester.
-              </p>
+              <h4 className="font-semibold mb-2">{t.contact.availability}</h4>
+              <p className="text-sm text-gray-400">{t.contact.availabilityText}</p>
             </div>
           </div>
 
           <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-              {/* Honeypot — hidden from users, traps bots */}
               <div className="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
                 <label htmlFor="contact-company">Company</label>
                 <input
@@ -172,7 +176,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="contact-name" className="block text-sm font-medium mb-2">
-                  Name
+                  {t.contact.name}
                 </label>
                 <Input
                   id="contact-name"
@@ -180,7 +184,7 @@ export default function Contact() {
                   autoComplete="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Your name"
+                  placeholder={t.contact.namePlaceholder}
                   className="bg-white/5 border-white/10 text-white placeholder:text-gray-500"
                   required
                 />
@@ -188,7 +192,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="contact-email" className="block text-sm font-medium mb-2">
-                  Email
+                  {t.contact.email}
                 </label>
                 <Input
                   id="contact-email"
@@ -197,7 +201,7 @@ export default function Contact() {
                   autoComplete="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="your.email@example.com"
+                  placeholder={t.contact.emailPlaceholder}
                   className="bg-white/5 border-white/10 text-white placeholder:text-gray-500"
                   required
                 />
@@ -205,14 +209,14 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="contact-message" className="block text-sm font-medium mb-2">
-                  Message
+                  {t.contact.message}
                 </label>
                 <Textarea
                   id="contact-message"
                   name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell me about the opportunity..."
+                  placeholder={t.contact.messagePlaceholder}
                   rows={5}
                   className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 resize-none"
                   required
@@ -221,14 +225,12 @@ export default function Contact() {
 
               {status === 'sent' && (
                 <p className="text-sm text-green-400" role="status">
-                  {formspreeEnabled
-                    ? 'Message sent — thank you! I will get back to you soon.'
-                    : 'Your email app should open with a pre-filled message. Send it from there to reach me.'}
+                  {formspreeEnabled ? t.contact.sentApi : t.contact.sentMailto}
                 </p>
               )}
               {status === 'error' && (
                 <p className="text-sm text-red-400" role="alert">
-                  {errorMessage || 'Something went wrong.'} Please email me at {siteConfig.email}.
+                  {errorMessage || t.contact.errorPrefix} {t.contact.errorSuffix} {siteConfig.email}.
                 </p>
               )}
 
@@ -239,17 +241,14 @@ export default function Contact() {
               >
                 <Send className="w-4 h-4 mr-2" />
                 {status === 'sending'
-                  ? 'Sending...'
+                  ? t.contact.sending
                   : formspreeEnabled
-                    ? 'Send Message'
-                    : 'Open in Email App'}
+                    ? t.contact.sendMessage
+                    : t.contact.openEmailApp}
               </Button>
 
               {!formspreeEnabled && (
-                <p className="text-xs text-gray-500 text-center">
-                  Formspree not configured — add <code className="text-gray-400">VITE_FORMSPREE_FORM_ID</code>{' '}
-                  to <code className="text-gray-400">.env</code> for direct delivery.
-                </p>
+                <p className="text-xs text-gray-500 text-center">{t.contact.formspreeHint}</p>
               )}
             </form>
           </div>

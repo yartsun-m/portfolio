@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/((?!assets|favicon\\.svg|resume\\.pdf|robots\\.txt|sitemap\\.xml|zoho-domain-verification\\.html).*)", "destination": "/index.html" }]
+}

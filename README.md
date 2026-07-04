@@ -15,9 +15,11 @@ Personal portfolio website showcasing backend development, AI/ML projects, and a
 
 ## Tech Stack
 
-- React 19 + Vite 7
+- React 19 + TypeScript + Vite 7
+- React Router (project detail pages)
 - Tailwind CSS + shadcn/ui
-- Lucide icons
+- i18n (English / Deutsch)
+- Vercel Analytics & Speed Insights
 - GitHub Actions CI
 
 ## Getting Started
@@ -41,68 +43,37 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ## Before Deploying
 
-1. **Add your resume** — Place your CV at `public/resume.pdf` (linked from hero and navigation).
-2. **Site URL** — Already set to `https://yartsun.dev` in `src/data/portfolio.js` and `index.html`.
-3. **Formspree** — Set `VITE_FORMSPREE_FORM_ID` in `.env` (see Contact Form section below).
-4. **GitHub profile** — Pin 4–6 repos that match this portfolio (`ai-data-analyst-app`, `portfolio`, FinTrack, etc.).
+1. **Add your resume** — Place your CV at `public/resume.pdf`.
+2. **Formspree** — Set `VITE_FORMSPREE_FORM_ID` in Vercel env vars (see below).
+3. **Analytics** — Vercel Analytics works automatically on Vercel deployments.
 
 ## Contact Form (Formspree)
 
-The contact form uses [Formspree](https://formspree.io) for direct inbox delivery.
-
-### Setup (one time)
-
-1. Create a free account at [formspree.io](https://formspree.io)
-2. **+ New Form** → set notification email to `yartsun.m@gmail.com`
-3. Copy your form ID from the integration URL: `https://formspree.io/f/`**`xyzabcde`**
-4. Create `.env` in the project root:
-
-```bash
-cp .env.example .env
-```
-
-5. Set your form ID:
-
-```
-VITE_FORMSPREE_FORM_ID=xyzabcde
-```
-
-6. Restart the dev server (`npm run dev`)
-
-### Deploy (Vercel / Netlify)
-
-Add the same environment variable in your hosting dashboard:
-
-| Key | Value |
-|-----|-------|
-| `VITE_FORMSPREE_FORM_ID` | your Formspree form ID |
-
-Redeploy after saving — env vars are baked in at build time.
-
-> **Note:** Formspree may ask you to confirm your email on the first submission from a new domain.
-
-## Contact Form Setup (legacy options)
-
-<details>
-<summary>Other providers (optional)</summary>
-
-| Service | Setup |
-|---------|-------|
-| **Web3Forms** | Set `VITE_CONTACT_FORM_URL=https://api.web3forms.com/submit` |
-| **FastAPI endpoint** | Set `VITE_CONTACT_FORM_URL` to your API URL |
-
-</details>
+1. Create a form at [formspree.io](https://formspree.io) → email: `yartsun.m@gmail.com`
+2. Set `VITE_FORMSPREE_FORM_ID=your_id` in `.env` locally and in Vercel dashboard
+3. Redeploy
 
 ## Project Structure
 
 ```
 src/
-├── data/portfolio.js       # Site config, skills, experience, projects
-├── components/portfolio/   # Page sections (Hero, Skills, Experience, …)
-├── components/ui/          # shadcn/ui primitives
-└── pages/Home.jsx          # Main page layout
-.github/workflows/ci.yml    # Lint + build on push/PR
+├── App.tsx                 # Router + analytics
+├── data/portfolio.ts       # Projects, skills, experience (structural data)
+├── i18n/                   # English & German translations
+├── types/portfolio.ts      # TypeScript interfaces
+├── pages/
+│   ├── Home.tsx            # Main single-page layout
+│   └── ProjectDetail.tsx   # /projects/:id case study pages
+├── components/portfolio/   # Section components
+└── components/ui/          # shadcn/ui primitives
 ```
+
+## Features
+
+- **Project detail pages** — `/projects/ai-data-analyst` with architecture diagrams
+- **EN/DE toggle** — Language switcher in navigation (persisted in localStorage)
+- **Certifications section** — Academic training & credentials
+- **Formspree contact form** — Direct inbox delivery
 
 ## Contact
 

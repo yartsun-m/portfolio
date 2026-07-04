@@ -1,9 +1,16 @@
-
 import { ArrowDown, Github, Linkedin, Mail, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/data/portfolio';
+import { useTranslation } from '@/i18n/useTranslation';
 
-export default function Hero({ onScrollToProjects }) {
+interface HeroProps {
+  onScrollToProjects: () => void;
+}
+
+export default function Hero({ onScrollToProjects }: HeroProps) {
+  const { t } = useTranslation();
+  const intro = t.hero.intro.replace('{name}', siteConfig.name);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20" />
@@ -16,23 +23,19 @@ export default function Hero({ onScrollToProjects }) {
         <div className="space-y-6">
           <div className="inline-block mb-4">
             <span className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium">
-              Open to Werkstudent & internship opportunities
+              {t.hero.badge}
             </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Software Developer
+              {t.hero.titleLine1}
             </span>
             <br />
-            <span className="text-white">Backend & AI</span>
+            <span className="text-white">{t.hero.titleLine2}</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Hi, I&apos;m <span className="text-white font-semibold">{siteConfig.name}</span>. Information
-            Engineering student at HAW Hamburg, building production-style APIs, databases, and AI-powered
-            applications.
-          </p>
+          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">{intro}</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
             <Button
@@ -40,7 +43,7 @@ export default function Hero({ onScrollToProjects }) {
               size="lg"
               className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-6 text-lg rounded-xl"
             >
-              View My Projects
+              {t.hero.viewProjects}
             </Button>
             <Button
               size="lg"
@@ -50,7 +53,7 @@ export default function Hero({ onScrollToProjects }) {
             >
               <a href={siteConfig.resumeUrl} download="Mykhailo_Yartsun_Resume.pdf">
                 <FileDown className="w-5 h-5 mr-2" />
-                Download CV
+                {t.hero.downloadCv}
               </a>
             </Button>
             <Button
@@ -62,7 +65,7 @@ export default function Hero({ onScrollToProjects }) {
               }}
             >
               <Mail className="w-5 h-5 mr-2" />
-              Get In Touch
+              {t.hero.getInTouch}
             </Button>
           </div>
 
@@ -71,7 +74,7 @@ export default function Hero({ onScrollToProjects }) {
               href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub profile"
+              aria-label={t.hero.github}
               className="p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
             >
               <Github className="w-6 h-6" />
@@ -80,14 +83,14 @@ export default function Hero({ onScrollToProjects }) {
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
+              aria-label={t.hero.linkedin}
               className="p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
             >
               <Linkedin className="w-6 h-6" />
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              aria-label="Send email"
+              aria-label={t.hero.email}
               className="p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
             >
               <Mail className="w-6 h-6" />
@@ -98,7 +101,7 @@ export default function Hero({ onScrollToProjects }) {
 
       <button
         onClick={onScrollToProjects}
-        aria-label="Scroll to projects"
+        aria-label={t.hero.scrollToProjects}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce motion-reduce:animate-none"
       >
         <ArrowDown className="w-6 h-6 text-gray-400" />
