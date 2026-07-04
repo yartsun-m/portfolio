@@ -10,8 +10,8 @@ import type {
 export const siteConfig: SiteConfig = {
   name: 'Mykhailo Yartsun',
   title: {
-    en: 'Mykhailo Yartsun | Backend & AI Developer',
-    de: 'Mykhailo Yartsun | Backend- & KI-Entwickler',
+    en: 'Mykhailo Yartsun | Backend Engineer · Data · APIs · AI',
+    de: 'Mykhailo Yartsun | Backend Engineer · Data · APIs · KI',
   },
   description: {
     en: 'Information Engineering student at HAW Hamburg. Backend developer specializing in Python, FastAPI, PostgreSQL, Java, and AI/ML. Open to Werkstudent and internship roles in Hamburg, Germany.',

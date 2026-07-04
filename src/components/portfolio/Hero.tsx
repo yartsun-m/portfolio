@@ -1,5 +1,6 @@
 import { ArrowDown, Github, Linkedin, Mail, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import DataPipelineVisual from '@/components/portfolio/DataPipelineVisual';
 import { siteConfig } from '@/data/portfolio';
 import { useTranslation } from '@/i18n/useTranslation';
 
@@ -9,7 +10,6 @@ interface HeroProps {
 
 export default function Hero({ onScrollToProjects }: HeroProps) {
   const { t } = useTranslation();
-  const intro = t.hero.intro.replace('{name}', siteConfig.name);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -35,7 +35,15 @@ export default function Hero({ onScrollToProjects }: HeroProps) {
             <span className="text-white">{t.hero.titleLine2}</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">{intro}</p>
+          <p className="text-lg md:text-xl text-blue-300/90 max-w-2xl mx-auto font-medium">
+            {t.hero.tagline}
+          </p>
+
+          <DataPipelineVisual />
+
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            {t.hero.intro}
+          </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
             <Button

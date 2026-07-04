@@ -18,10 +18,16 @@ export const en: Translations = {
   },
   hero: {
     badge: 'Open to Werkstudent & internship opportunities',
-    titleLine1: 'Software Developer',
-    titleLine2: 'Backend & AI',
+    titleLine1: 'Backend Engineer',
+    titleLine2: 'Data · APIs · AI',
+    tagline: 'I build the API layer between databases and AI',
     intro:
-      "Hi, I'm {name}. Information Engineering student at HAW Hamburg, building production-style APIs, databases, and AI-powered applications.",
+      'I build FastAPI backends and PostgreSQL systems — then wire in ML and LLMs when the data needs it. 6th semester at HAW Hamburg.',
+    pipelineRaw: 'CSV / SQL',
+    pipelineApi: 'FastAPI',
+    pipelineDb: 'PostgreSQL',
+    pipelineAi: 'ML / AI',
+    pipelineAria: 'Data pipeline: CSV or SQL, through FastAPI and PostgreSQL, to ML and AI',
     viewProjects: 'View My Projects',
     downloadCv: 'Download CV',
     getInTouch: 'Get In Touch',
@@ -33,11 +39,11 @@ export const en: Translations = {
   about: {
     title: 'About Me',
     subtitle:
-      "I'm a software developer studying Information Engineering at HAW Hamburg (5th semester). I build backend APIs, PostgreSQL systems, and AI-powered tools — from a production-style data analyst platform to team finance apps and natural-language SQL assistants.",
+      "Information Engineering student at HAW Hamburg (6th semester). I build FastAPI backends and PostgreSQL systems — then wire in ML and LLMs when the data needs it.",
     education: 'Education',
     degree1: 'Information Engineering (B.Sc.)',
     school1: 'HAW Hamburg',
-    period1: '2023 — Present · 5th Semester',
+    period1: '2023 — Present · 6th Semester',
     spec1: 'Specialization: Software and Information Technology',
     degree2: 'Software Engineering (B.Sc.)',
     school2: 'Kyiv Polytechnic Institute',
@@ -254,7 +260,7 @@ export const en: Translations = {
     location: 'Location',
     availability: 'Availability',
     availabilityText:
-      '5th semester at HAW Hamburg. Available for part-time roles up to 20 hours/week during the semester.',
+      '6th semester at HAW Hamburg. Available for part-time roles up to 20 hours/week during the semester.',
     name: 'Name',
     namePlaceholder: 'Your name',
     emailPlaceholder: 'your.email@example.com',

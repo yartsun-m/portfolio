@@ -1,6 +1,14 @@
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_FORM_ID;
 const CUSTOM_ENDPOINT = import.meta.env.VITE_CONTACT_FORM_URL;
 
+/** Accept bare ID (xzdlyape) or pasted full URL from Formspree dashboard. */
+function normalizeFormspreeId(value: string): string {
+  return value
+    .trim()
+    .replace(/^https?:\/\/(www\.)?formspree\.io\/f\//i, '')
+    .replace(/\/$/, '');
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
@@ -9,7 +17,7 @@ export interface ContactFormData {
 
 export function getFormspreeEndpoint(): string | null {
   if (FORMSPREE_ID) {
-    return `https://formspree.io/f/${FORMSPREE_ID}`;
+    return `https://formspree.io/f/${normalizeFormspreeId(FORMSPREE_ID)}`;
   }
   return CUSTOM_ENDPOINT || null;
 }

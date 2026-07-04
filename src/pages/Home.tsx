@@ -50,7 +50,9 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
-      <ParticleBackground />
+      <div className="fixed inset-0 opacity-[0.18] pointer-events-none">
+        <ParticleBackground />
+      </div>
 
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${

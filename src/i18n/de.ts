@@ -16,10 +16,16 @@ export const de: Translations = {
   },
   hero: {
     badge: 'Offen für Werkstudent- & Praktikumsstellen',
-    titleLine1: 'Softwareentwickler',
-    titleLine2: 'Backend & KI',
+    titleLine1: 'Backend Engineer',
+    titleLine2: 'Data · APIs · KI',
+    tagline: 'Ich baue die API-Schicht zwischen Datenbanken und KI',
     intro:
-      'Hallo, ich bin {name}. Information Engineering Student an der HAW Hamburg — ich entwickle produktionsreife APIs, Datenbanken und KI-Anwendungen.',
+      'Ich entwickle FastAPI-Backends und PostgreSQL-Systeme — und integriere ML und LLMs, wenn die Daten es brauchen. 6. Semester an der HAW Hamburg.',
+    pipelineRaw: 'CSV / SQL',
+    pipelineApi: 'FastAPI',
+    pipelineDb: 'PostgreSQL',
+    pipelineAi: 'ML / KI',
+    pipelineAria: 'Datenpipeline: CSV oder SQL, über FastAPI und PostgreSQL, zu ML und KI',
     viewProjects: 'Projekte ansehen',
     downloadCv: 'Lebenslauf herunterladen',
     getInTouch: 'Kontakt aufnehmen',
@@ -31,11 +37,11 @@ export const de: Translations = {
   about: {
     title: 'Über mich',
     subtitle:
-      'Ich studiere Information Engineering an der HAW Hamburg (5. Semester) und entwickle Backend-APIs, PostgreSQL-Systeme und KI-Tools — von einer Data-Analyst-Plattform bis zu Finanz-Apps und SQL-Assistenten.',
+      'Information Engineering an der HAW Hamburg (6. Semester). Ich entwickle FastAPI-Backends und PostgreSQL-Systeme — und integriere ML und LLMs, wenn die Daten es brauchen.',
     education: 'Ausbildung',
     degree1: 'Information Engineering (B.Sc.)',
     school1: 'HAW Hamburg',
-    period1: '2023 — heute · 5. Semester',
+    period1: '2023 — heute · 6. Semester',
     spec1: 'Schwerpunkt: Software und Informationstechnik',
     degree2: 'Software Engineering (B.Sc.)',
     school2: 'Kyiv Polytechnic Institute',
@@ -250,7 +256,7 @@ export const de: Translations = {
     location: 'Standort',
     availability: 'Verfügbarkeit',
     availabilityText:
-      '5. Semester an der HAW Hamburg. Teilzeit bis 20 Stunden/Woche während des Semesters.',
+      '6. Semester an der HAW Hamburg. Teilzeit bis 20 Stunden/Woche während des Semesters.',
     name: 'Name',
     namePlaceholder: 'Ihr Name',
     emailPlaceholder: 'ihre.email@beispiel.de',
