@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { getProjectById } from '@/data/portfolio';
 import { useTranslation } from '@/i18n/useTranslation';
-import ParticleBackground from '@/components/portfolio/ParticleBackground';
+import ObservabilityBackground from '@/components/portfolio/ObservabilityBackground';
 import LanguageToggle from '@/components/portfolio/LanguageToggle';
 
 interface ProjectDetailProps {
@@ -19,7 +19,9 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
   if (!project || !content) {
     return (
       <div className="relative min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center px-6">
-        <ParticleBackground />
+        <div className="fixed inset-0 pointer-events-none">
+          <ObservabilityBackground />
+        </div>
         <div className="relative z-10 text-center">
           <h1 className="text-3xl font-bold mb-4">{t.projectDetail.notFound}</h1>
           <p className="text-gray-400 mb-8">{t.projectDetail.notFoundDesc}</p>
@@ -38,7 +40,9 @@ export default function ProjectDetail({ projectId }: ProjectDetailProps) {
 
   return (
     <div className="relative min-h-screen bg-[#0A0A0A] text-white">
-      <ParticleBackground />
+      <div className="fixed inset-0 pointer-events-none">
+        <ObservabilityBackground />
+      </div>
 
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/95 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">

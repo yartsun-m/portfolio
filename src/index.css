@@ -94,7 +94,30 @@
   }
 }
 
+@keyframes log-stream-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
 @layer utilities {
+  .log-stream-root .log-stream-column {
+    animation: log-stream-up linear infinite;
+  }
+
+  .log-stream-root .log-stream-reverse {
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .log-stream-root .log-stream-column {
+      animation: none;
+    }
+  }
+
   .pipeline-flow-dot {
     animation: pipeline-flow 2.4s ease-in-out infinite;
   }

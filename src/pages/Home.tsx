@@ -8,7 +8,7 @@ import Experience from '@/components/portfolio/Experience';
 import Certifications from '@/components/portfolio/Certifications';
 import Projects from '@/components/portfolio/Projects';
 import Contact from '@/components/portfolio/Contact';
-import ParticleBackground from '@/components/portfolio/ParticleBackground';
+import ObservabilityBackground from '@/components/portfolio/ObservabilityBackground';
 import LanguageToggle from '@/components/portfolio/LanguageToggle';
 import { navSections, siteConfig } from '@/data/portfolio';
 import { useTranslation } from '@/i18n/useTranslation';
@@ -50,8 +50,8 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
-      <div className="fixed inset-0 opacity-[0.18] pointer-events-none">
-        <ParticleBackground />
+      <div className="fixed inset-0 pointer-events-none">
+        <ObservabilityBackground />
       </div>
 
       <nav
