@@ -1,4 +1,5 @@
 import BlueprintGridWarp from '@/components/portfolio/BlueprintGridWarp';
+import BlueprintWireframe3D from '@/components/portfolio/BlueprintWireframe3D';
 
 type LogLine = {
   time: string;
@@ -68,6 +69,7 @@ export default function BlueprintBackground() {
 
   return (
     <div className="absolute inset-0 blueprint-grid-bg overflow-hidden" aria-hidden="true">
+      <BlueprintWireframe3D />
       <BlueprintGridWarp />
 
       {/* Center axis guides */}
