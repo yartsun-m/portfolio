@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +21,7 @@
       name="keywords"
       content="Mykhailo Yartsun, backend developer, software engineer, FastAPI, Python, PostgreSQL, AI, machine learning, Hamburg, Werkstudent, internship, portfolio"
     />
-    <link rel="canonical" href="https://yartsun.dev" />
+    <link rel="canonical" href="https://github.com/yartsun-m/portfolio" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -23,7 +30,7 @@
       property="og:description"
       content="Backend & AI developer building FastAPI apps, PostgreSQL systems, and ML-powered tools. HAW Hamburg student open to Werkstudent roles."
     />
-    <meta property="og:url" content="https://yartsun.dev" />
+    <meta property="og:url" content="https://github.com/yartsun-m/portfolio" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
